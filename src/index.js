@@ -1,6 +1,61 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import SimpleCounter from './App/App';
+import ReactDOM from 'react-dom';
+import './App.css';
+import PropTypes from 'prop-types';
+import { useEffect, useState } from 'react';
+
+function SimpleCounter(props) {
+  const [digitOne, setDigitOne] = useState();
+  const [digitTwo, setDigitTwo] = useState();
+  const [digitThree, setDigitThree] = useState();
+  const [digitFour, setDigitFour] = useState();
+
+  useEffect (() => {
+    let counter = 0;
+    setInterval(function(){
+      const four = Math.floor(counter/1000);
+      const three = Math.floor(counter/100);
+      const two = Math.floor(counter/10);
+      const one = Math.floor(counter/1);
+      console.log(four, three, two, one);
+      setDigitOne(one);
+      setDigitTwo(two);
+      setDigitThree(three);
+      setDigitFour(four);
+
+      counter++;
+    }, 777)
+
+  }, [digitFour, digitThree, digitTwo, digitOne])
+  
+  return (
+    <div className="container" style={{display: "flex"}}>
+      <div className="clock">
+        <i className="fa-solid fa-clock"></i>
+      </div>
+      <div className="4">{digitFour}</div>
+      <div className="3">{digitThree}</div>
+      <div className="2">{digitTwo}</div>
+      <div className="1">{digitOne}</div>
+      
+      
+      
+      
+     
+      
+    </div>
+  );
+
+  
+}
+
+
+SimpleCounter.propTypes = {
+  digitFour: PropTypes.number,
+  digitThree: PropTypes.number,
+  digitTwo: PropTypes.number,
+  digitOne: PropTypes.number
+};
 
 
 
