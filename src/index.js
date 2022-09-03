@@ -11,28 +11,29 @@ const SimpleCounter = () => {
   
  
   useEffect (() => {
-     const counter = setInterval(() => {
-
+      setInterval(() => {
       setSeconds(seconds+1);
-
-      if (seconds===59) {
+      if (seconds===5) {
         setMinutes(minutes+1);
-        setSeconds = 0;
-        
+        setSeconds(0);      
       }
       if (minutes===59) {
         setHours(hours+1);
-        setMinutes = 0;
+        setSeconds(0);  
+        setMinutes(0);
       }
       if (hours===24) {
         setDays(days+1);
-        setHours = 0;
+        setSeconds(0);  
+        setMinutes(0);
+        setHours(0);
+
       }
-      console.log(seconds, minutes, hours, days);
-      ;
+    
+      
     }, 1000)
 
-  }, )
+  }, [seconds, minutes, hours, days])
   
     return (
       <div className="container" style={{display: "flex"}}>
